@@ -239,29 +239,6 @@ pushd "$CURL_BUILD_DIR"
         ;;
 
         linux*)
-            # Linux build environment at Linden comes pre-polluted with stuff that can
-            # seriously damage 3rd-party builds.  Environmental garbage you can expect
-            # includes:
-            #
-            #    DISTCC_POTENTIAL_HOSTS     arch           root        CXXFLAGS
-            #    DISTCC_LOCATION            top            branch      CC
-            #    DISTCC_HOSTS               build_name     suffix      CXX
-            #    LSDISTCC_ARGS              repo           prefix      CFLAGS
-            #    cxx_version                AUTOBUILD      SIGN        CPPFLAGS
-            #
-            # So, clear out bits that shouldn't affect our configure-directed build
-            # but which do nonetheless.
-            #
-            # unset DISTCC_HOSTS CC CXX CFLAGS CPPFLAGS CXXFLAGS
-
-#            ./buildconf
-
-##          # Prefer gcc-4.6 if available.
-##          if [[ -x /usr/bin/gcc-4.6 && -x /usr/bin/g++-4.6 ]]; then
-##              export CC=/usr/bin/gcc-4.6
-##              export CXX=/usr/bin/g++-4.6
-##          fi
-
             # Default target per --address-size
             opts="${TARGET_OPTS:--m$AUTOBUILD_ADDRSIZE $LL_BUILD_RELEASE}"
 
@@ -301,7 +278,7 @@ pushd "$CURL_BUILD_DIR"
             cmake ../${CURL_SOURCE_DIR} -G"Unix Makefiles" \
                 -DCMAKE_C_FLAGS:STRING="$opts" -DCMAKE_CXX_FLAGS:STRING="$opts" \
                 -DENABLE_THREADED_RESOLVER:BOOL=ON \
-                -DCMAKE_USE_OPENSSL:BOOL=TRUE \
+                -DUSE_OPENSSL:BOOL=TRUE \
                 -DUSE_NGHTTP2:BOOL=TRUE \
                 -DNGHTTP2_INCLUDE_DIR:FILEPATH="$stage/packages/include" \
                 -DNGHTTP2_LIBRARY:FILEPATH="$stage/packages/lib/release/libnghttp2.a" \
@@ -309,24 +286,10 @@ pushd "$CURL_BUILD_DIR"
             
             check_damage "$AUTOBUILD_PLATFORM"
 
-            make
+            make -j8
             make install
             mkdir -p "$stage/lib/release"
-            mv "$stage/lib/libcurl.a" "$stage/lib/release/libcurl.a"
-
-#           # conditionally run unit tests
-#           if [ "${DISABLE_UNIT_TESTS:-0}" = "0" ]; then
-#                pushd tests
-#                    # We hijack the 'quiet-test' target and redefine it as
-#                    # a no-valgrind test.  Also exclude test 906.  It fails in the
-#                    # 7.33 distribution with our configuration options.  530 fails
-#                    # in TeamCity.  815 hangs in 7.36.0 fixed in 7.37.0.
-#                    #
-#                    # Expect problems with the unit tests, they're very sensitive
-#                    # to environment.
-#                    make quiet-test TEST_Q='-n !906 !530 !564 !584 !1026'
-#                popd
-#            fi
+            mv "$stage/lib64/libcurl.a" "$stage/lib/release/libcurl.a"
 
             export LD_LIBRARY_PATH="$saved_path"
         ;;
