@@ -282,6 +282,9 @@ pushd "$CURL_BUILD_DIR"
                 -DUSE_NGHTTP2:BOOL=TRUE \
                 -DNGHTTP2_INCLUDE_DIR:FILEPATH="$stage/packages/include" \
                 -DNGHTTP2_LIBRARY:FILEPATH="$stage/packages/lib/release/libnghttp2.a" \
+                -DOPENSSL_INCLUDE_DIR="$stage/packages/include" \
+                -DOPENSSL_CRYPTO_LIBRARY="$stage/packages/lib/release/libcrypto.a" \
+                -DOPENSSL_SSL_LIBRARY="$stage/packages/lib/release/libssl.a" \
                 -DBUILD_SHARED_LIBS:bool=off -DCMAKE_INSTALL_PREFIX=$stage
             
             check_damage "$AUTOBUILD_PLATFORM"
@@ -289,7 +292,8 @@ pushd "$CURL_BUILD_DIR"
             make -j8
             make install
             mkdir -p "$stage/lib/release"
-            mv "$stage/lib64/libcurl.a" "$stage/lib/release/libcurl.a"
+            # On some systems the lib gets installed into lib64 on others into lib ...
+            test -f "$stage/lib64/libcurl.a" && ( mv "$stage/lib64/libcurl.a" "$stage/lib/release/libcurl.a" ) || ( mv "$stage/lib/libcurl.a" "$stage/lib/release/libcurl.a" )
 
             export LD_LIBRARY_PATH="$saved_path"
         ;;
