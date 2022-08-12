@@ -105,9 +105,9 @@ Copyright (c) 2012, 2014, 2015, 2016 nghttp2 contributors</string>
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>ea82e634334bccf088daf3d15eab07b7</string>
+              <string>cdd9c6c484542a2e1be99149c4f0e75f</string>
               <key>url</key>
-              <string>http://3p.firestormviewer.org/openssl-1.1.1l.212872015-linux64-212872015.tar.bz2</string>
+              <string>http://3p.firestormviewer.org/openssl-1.1.1l.222121440-linux64-222121440.tar.bz2</string>
             </map>
             <key>name</key>
             <string>linux64</string>
@@ -140,18 +140,18 @@ Copyright (c) 2012, 2014, 2015, 2016 nghttp2 contributors</string>
         <key>version</key>
         <string>1.1.1l.212872015</string>
       </map>
-      <key>zlib</key>
+      <key>zlib-ng</key>
       <map>
         <key>copyright</key>
         <string>Copyright (C) 1995-2013 Jean-loup Gailly and Mark Adler</string>
         <key>description</key>
         <string>Zlib Data Compression Library</string>
         <key>license</key>
-        <string>zlib</string>
+        <string>zlib-ng</string>
         <key>license_file</key>
-        <string>LICENSES/zlib.txt</string>
+        <string>LICENSES/zlib-ng.txt</string>
         <key>name</key>
-        <string>zlib</string>
+        <string>zlib-ng</string>
         <key>platforms</key>
         <map>
           <key>darwin64</key>
@@ -171,9 +171,9 @@ Copyright (c) 2012, 2014, 2015, 2016 nghttp2 contributors</string>
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>15a645809cb2f14074f22e7848bb42cf</string>
+              <string>5ee7cda65cede06190c811e59b3880b0</string>
               <key>url</key>
-              <string>http://3p.firestormviewer.org/zlib-1.2.8.180841547-linux64-180841547.tar.bz2</string>
+              <string>http://3p.firestormviewer.org/zlib_ng-2.0.5.222121000-linux64-222121000.tar.bz2</string>
             </map>
             <key>name</key>
             <string>linux64</string>
@@ -204,7 +204,7 @@ Copyright (c) 2012, 2014, 2015, 2016 nghttp2 contributors</string>
           </map>
         </map>
         <key>version</key>
-        <string>1.2.8.180841547</string>
+        <string>2.0.5.222121000</string>
       </map>
     </map>
     <key>package_description</key>
