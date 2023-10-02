@@ -35,11 +35,11 @@ Copyright (c) 2012, 2014, 2015, 2016 nghttp2 contributors</string>
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>b460d5bac2d20b38cb73b54d0ab1b6e3</string>
+              <string>57670eaa6333d9127b8ba88f120e56dd</string>
               <key>hash_algorithm</key>
               <string>md5</string>
               <key>url</key>
-              <string>http://3p.firestormviewer.org/nghttp2-1.25.0.180841549-linux64-180841549.tar.bz2</string>
+              <string>http://3p.firestormviewer.org/nghttp2-1.56.0.232750738-linux64-232750738.tar.bz2</string>
             </map>
             <key>name</key>
             <string>linux64</string>
@@ -105,9 +105,9 @@ Copyright (c) 2012, 2014, 2015, 2016 nghttp2 contributors</string>
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>cdd9c6c484542a2e1be99149c4f0e75f</string>
+              <string>a3b2dbffa28a2b2a63c5d3ce2c12bc85</string>
               <key>url</key>
-              <string>http://3p.firestormviewer.org/openssl-1.1.1l.222121440-linux64-222121440.tar.bz2</string>
+              <string>http://3p.firestormviewer.org/openssl-1.1.1w.232750656-linux64-232750656.tar.bz2</string>
             </map>
             <key>name</key>
             <string>linux64</string>
@@ -210,9 +210,9 @@ Copyright (c) 2012, 2014, 2015, 2016 nghttp2 contributors</string>
     <key>package_description</key>
     <map>
       <key>canonical_repo</key>
-      <string>https://bitbucket.org/nickyd/3p-curl</string>
+      <string>https://vcs.firestormviewer.org/3p-libraries/linux-specific/3p-curl</string>
       <key>copyright</key>
-      <string>Copyright (c) 1996 - 2014, Daniel Stenberg, (daniel@haxx.se).</string>
+      <string>Copyright (c) 1996 - 2023, Daniel Stenberg, (daniel@haxx.se).</string>
       <key>description</key>
       <string>Library for transferring data specified with URL syntax</string>
       <key>license</key>
