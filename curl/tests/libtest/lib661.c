@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2021, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -17,6 +17,8 @@
  *
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
+ *
+ * SPDX-License-Identifier: curl
  *
  ***************************************************************************/
 #include "test.h"
@@ -50,7 +52,7 @@ int test(char *URL)
    test_setopt(curl, CURLOPT_FTP_FILEMETHOD, (long) CURLFTPMETHOD_SINGLECWD);
    res = curl_easy_perform(curl);
 
-   free(newURL);
+   curl_free(newURL);
    newURL = aprintf("%s/folderB/661", URL);
    test_setopt(curl, CURLOPT_URL, newURL);
    res = curl_easy_perform(curl);
@@ -65,7 +67,7 @@ int test(char *URL)
      goto test_cleanup;
    }
 
-   free(newURL);
+   curl_free(newURL);
    newURL = aprintf("%s/folderA/661", URL);
    test_setopt(curl, CURLOPT_URL, newURL);
    test_setopt(curl, CURLOPT_VERBOSE, 1L);
@@ -74,13 +76,13 @@ int test(char *URL)
    res = curl_easy_perform(curl);
 
    /* curve ball: CWD /folderB before reusing connection with _NOCWD */
-   free(newURL);
+   curl_free(newURL);
    newURL = aprintf("%s/folderB/661", URL);
    test_setopt(curl, CURLOPT_URL, newURL);
    test_setopt(curl, CURLOPT_FTP_FILEMETHOD, (long) CURLFTPMETHOD_SINGLECWD);
    res = curl_easy_perform(curl);
 
-   free(newURL);
+   curl_free(newURL);
    newURL = aprintf("%s/folderA/661", URL);
    test_setopt(curl, CURLOPT_URL, newURL);
    test_setopt(curl, CURLOPT_FTP_FILEMETHOD, (long) CURLFTPMETHOD_NOCWD);
@@ -142,7 +144,7 @@ int test(char *URL)
 test_cleanup:
 
    curl_slist_free_all(slist);
-   free(newURL);
+   curl_free(newURL);
    curl_easy_cleanup(curl);
    curl_global_cleanup();
 
